@@ -1,31 +1,40 @@
 # Tiny Tapeout project information
 project:
-  title:        ""      # Project title
-  author:       ""      # Your name
+  title:        "Drum machine"      # Project title
+  author:       "Sam Newman-Sanders"      # Your name
   discord:      ""      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  ""      # One line description of what your project does
+  description:  "A three-voice drum machine: kick, snare and hi-hat, synthesised in digital logic. Each voice fires on a trigger pin, and the mix leaves as a PWM bitstream and a sigma-delta bitstream."      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
-  clock_hz:     0       # Clock frequency in Hz (or 0 if not applicable)
+  clock_hz:     25000000       # Clock frequency in Hz (or 0 if not applicable)
 
   # How many tiles your design occupies? A single tile is about 167x108 uM.
-  tiles: "1x1"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
+  tiles: "1x2"          # Valid values: 1x1, 1x2, 2x2, 3x2, 4x2, 6x2 or 8x2
 
   # Your top module name must start with "tt_um_". Make it unique by including your github username:
-  top_module:  "tt_um_example"
+  top_module:  "tt_um_samnewmansanders_drum_machine"
 
   # List your project's source files here.
   # Source files must be in ./src and you must list each source file separately, one per line.
   # Don't forget to also update `PROJECT_SOURCES` in test/Makefile.
   source_files:
+    - "drum_machine_core.v"
+    - "ip_hat.v"
+    - "ip_kick.v"
+    - "ip_noise.v"
+    - "ip_pwm.v"
+    - "ip_rom_sine.v"
+    - "ip_sigma_delta.v"
+    - "ip_snare.v"
+    - "ip_tick.v"
     - "project.v"
 
 # The pinout of your project. Leave unused pins blank. DO NOT delete or add any pins.
 # This section is for the datasheet/website. Use descriptive names (e.g., RX, TX, MOSI, SCL, SEG_A, etc.).
 pinout:
   # Inputs
-  ui[0]: ""
-  ui[1]: ""
-  ui[2]: ""
+  ui[0]: "Kick trigger"
+  ui[1]: "Snare trigger"
+  ui[2]: "Hi-hat trigger"
   ui[3]: ""
   ui[4]: ""
   ui[5]: ""
@@ -43,8 +52,8 @@ pinout:
   uo[7]: ""
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
+  uio[0]: "PWM audio output"
+  uio[1]: "Sigma-delta audio output"
   uio[2]: ""
   uio[3]: ""
   uio[4]: ""
